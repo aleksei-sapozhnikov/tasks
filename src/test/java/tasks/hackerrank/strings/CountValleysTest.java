@@ -1,11 +1,9 @@
-package tasks.simplelogic;
+package tasks.hackerrank.strings;
 
 import org.junit.Test;
 import utils.CommonMethods;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -20,7 +18,7 @@ public class CountValleysTest {
         String input3 = "UDUUUDUDDD";
         String input4 = CommonMethods.getInstance().loadFileAsString(this,
                 this.getClass().getPackage().getName().replace(".", "/"),
-                "input4", "UTF-8");
+                "countValleysInput4", "UTF-8");
         assertThat(test.countValleys(input1), is(1));
         assertThat(test.countValleys(input2), is(2));
         assertThat(test.countValleys(input3), is(0));

@@ -1,4 +1,4 @@
-package tasks.anagrams;
+package tasks.hackerrank.anagrams;
 
 import java.util.Arrays;
 import java.util.HashMap;

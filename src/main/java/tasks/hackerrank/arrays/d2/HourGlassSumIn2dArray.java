@@ -1,4 +1,4 @@
-package tasks.arrays.d2;
+package tasks.hackerrank.arrays.d2;
 
 /**
  * Given a 2D array, count maximum sum

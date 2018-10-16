@@ -1,4 +1,4 @@
-package tasks.arrays.d1;
+package tasks.hackerrank.arrays.d1;
 
 /**
  * Name: Sock Merchant. From: hackerrank.com. Date: 04.10.2018

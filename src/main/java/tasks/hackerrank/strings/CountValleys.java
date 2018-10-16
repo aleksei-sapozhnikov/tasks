@@ -1,4 +1,4 @@
-package tasks.simplelogic;
+package tasks.hackerrank.strings;
 
 /**
  * Name: Counting Valleys. From: hackerrank.com. Date: 15.09.2018

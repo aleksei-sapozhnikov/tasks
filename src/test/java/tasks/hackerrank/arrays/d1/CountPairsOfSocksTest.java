@@ -1,4 +1,4 @@
-package tasks.arrays.d1;
+package tasks.hackerrank.arrays.d1;
 
 import org.junit.Test;
 
