@@ -13,8 +13,10 @@ public class BinarySearchTreeTest {
         int[] input1 = {3, 5, 2, 1, 4, 6, 7};
         int[] input2 = {20, 50, 35, 44, 9, 15, 62, 11, 13};
         int[] input3 = {25, 39, 12, 19, 9, 23, 55, 31, 60, 35, 41, 70, 90};
+        int[] input4 = {2};
         assertThat(tree.buildTree(input1).getTreeHeight(), is(3));
         assertThat(tree.buildTree(input2).getTreeHeight(), is(4));
         assertThat(tree.buildTree(input3).getTreeHeight(), is(5));
+        assertThat(tree.buildTree(input4).getTreeHeight(), is(0));
     }
 }
