@@ -8,9 +8,9 @@ import java.io.IOException;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class camelCaseCountWordsTest {
+public class CamelCaseCountWordsTest {
 
-    private camelCaseCountWords test = new camelCaseCountWords();
+    private CamelCaseCountWords test = new CamelCaseCountWords();
 
     private String input1 = "saveChangesInTheEditor";
     private int result1 = 5;
@@ -28,7 +28,7 @@ public class camelCaseCountWordsTest {
     private String input4 = "";
     private int result4 = 0;
 
-    public camelCaseCountWordsTest() throws IOException {
+    public CamelCaseCountWordsTest() throws IOException {
     }
 
 

@@ -11,7 +11,7 @@ package tasks.hackerrank.strings;
  * <p>
  * Constraints: 1<= string.length <= 10e5; string contains only English letters.
  */
-public class camelCaseCountWords {
+public class CamelCaseCountWords {
 
     /**
      * Count capital letters using java 8 streams.
