@@ -1,5 +1,7 @@
 package tasks.hackerrank.tree;
 
+import java.util.*;
+
 /**
  * Name: Binary search tree. From: hackerrank.com. Date: 17.10.2018
  * <p>
@@ -107,15 +109,68 @@ public class BinarySearchTree {
     }
 
     /**
+     * Traverses current tree level-by-level left-to-right.
+     * <p>
+     * Идея: Мы создаем "очередь на обработку" и запихиваем в нее корень дерева.
+     * Далее в цикле:
+     * 1. Берем следующий элемент из очереди и обрабатываем.
+     * 2. Кладем в очередь его потомков - левый и правый (если они не null).
+     * <p>
+     * Цикл продолжается, пока очередь не закончится - то есть, мы прошли все элементы.
+     * Таким образом, получается последовательность:
+     * 1. Root -> добавляем в очередь root.left, root.right.
+     * 2. Root.left -> добавляем в очередь root.left.left, root.left.right.
+     * 3. Root.right -> добавляем в очередь root.right.left, root.right.right.
+     * 4. Root.left.left -> добавляем в очередь root.left.left.left и root.left.left.right
+     * 5. Root.left.right -> ...
+     * 6. Root.right.left -> ...
+     * 7. Root.right.right -> ...
+     * ...
+     *
+     * @return List of nodes.
+     */
+    /*
+     * Example - let tree be:
+     *
+     *
+     *                        1                     level 1
+     *                     5     8                  level 2
+     *                  3      9   2                level 3
+     *
+     *
+     *  Then result is: 1 5 8 3 9 2
+     */
+    public List<Node> traverseLevelByLevel() {
+        List<Node> result = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>(Collections.singletonList(this.root));
+        Node current;
+        while (!queue.isEmpty()) {
+            current = queue.poll();
+            result.add(current);
+            if (current.left != null) {
+                queue.add(current.left);
+            }
+            if (current.right != null) {
+                queue.add(current.right);
+            }
+        }
+        return result;
+    }
+
+    /**
      * Node class.
      */
-    private class Node {
+    class Node {
         private Node left = null;
         private Node right = null;
         private int value;
 
         private Node(int value) {
             this.value = value;
+        }
+
+        int getValue() {
+            return this.value;
         }
     }
 
