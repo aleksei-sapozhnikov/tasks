@@ -51,5 +51,16 @@ public class MyLinkedListTest {
         assertThat(this.buffer, is(new ArrayList<>(Arrays.asList(
                 3, 9, 11, 89, 100, 101, 102, 103, 108, 200, 250
         ))));
+        /*
+         *
+         */
+        this.buffer.clear();
+        int[] input4 = {};
+        this.test.build(
+                input4
+        ).removeDuplicates().toConsumer(consumer);
+        assertThat(this.buffer, is(new ArrayList<>(
+                Collections.emptyList()
+        )));
     }
 }

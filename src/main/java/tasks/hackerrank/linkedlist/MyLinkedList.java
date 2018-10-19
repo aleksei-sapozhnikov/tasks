@@ -19,10 +19,15 @@ public class MyLinkedList {
      * @return List with data.
      */
     public MyLinkedList build(int... data) {
+        if (data.length <= 0) {
+            this.head = null;
+            return this;
+        }
         this.head = new Node(data[0]);
         for (int i = 1; i < data.length; i++) {
             this.insert(this.head, data[i]);
         }
+
         return this;
     }
 
