@@ -3,14 +3,10 @@ package tasks.hackerrank.tree;
 import java.util.*;
 
 /**
- * Name: Binary search tree. From: hackerrank.com. Date: 17.10.2018
+ * From: hackerrank.com. Date: 17.10.2018
  * <p>
- * Изначально заданием было найти высоту дерева, но для этого нужно создать дерево.
- * Поэтому получился класс бинарного дерева (очень простого), чтобы вспомнить как оно делается.
+ * Simple binary search tree to perform tasks.
  * <p>
- * The height of a binary search tree is the number of edges between the tree's root and its furthest leaf.
- * You are given a pointer, root, pointing to the root of a binary search tree.
- * Complete the getHeight function provided in your editor so that it returns the height of the binary search tree.
  */
 public class BinarySearchTree {
 
@@ -75,6 +71,16 @@ public class BinarySearchTree {
         return this;
     }
 
+    /**
+     * Name: Binary search tree. From: hackerrank.com. Date: 17.10.2018
+     * <p>
+     * The height of a binary search tree is the number of edges between the tree's root and its furthest leaf.
+     * You are given a pointer, root, pointing to the root of a binary search tree.
+     * Complete the getHeight function provided in your editor so that it returns the height of the binary search tree.
+     * <p>
+     *
+     * @return Height of the tree.
+     */
     public int getTreeHeight() {
         return this.getHeight(this.root);
     }
