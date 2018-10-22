@@ -1,5 +1,7 @@
 package tasks.interviews.code;
 
+import java.lang.reflect.Field;
+
 /**
  * Задачка с собеседования в Сбере:
  * Как изменить код программы, чтобы она компилировалась
@@ -53,7 +55,7 @@ class AnswerOneSimple {
  * Выполнение программы начнется со второго метода, а первый вообще вызван
  * не будет. В результате - будет написано только "Right".
  */
-class Answer2Tricky {
+class AnswerTwoCreateCustomStringClassy {
     public static void main(String[] args) {
         System.out.println("Wrong");
     }
@@ -64,4 +66,32 @@ class Answer2Tricky {
 
     class String {
     }
+}
+
+/**
+ * Третий вариант, совсем хитрый.
+ * <p>
+ * При запросе литерала "Wrong" выдается один и тот же объект из стринг пула. Назовем его wrongObj.
+ * В static{} блоке мы запрашиваем (и создаем) объект wrongObj и меняем в нем поле wrongObj.value = "Right".
+ * <p>
+ * В методе main при запросе литерала "Wrong" мы получаем уже созданный и измененный нами объект wrongObj.
+ * В консоль по факту выводится wrongObj.value, поэтому println("Wrong") дает результат "Right".
+ */
+class AnswerThreeUsingReflection {
+    static {
+        try {
+            String right = "Wrong";
+            Field field = right.getClass().getDeclaredField("value");
+            field.setAccessible(true);
+            field.set(right, new char[]{'R', 'i', 'g', 'h', 't'});
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Wrong");
+    }
+
+
 }
