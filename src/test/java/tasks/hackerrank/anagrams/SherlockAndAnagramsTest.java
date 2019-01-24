@@ -14,6 +14,6 @@ public class SherlockAndAnagramsTest {
         assertThat(test.numOfAnagramPairs("abcd"), is(0));
         assertThat(test.numOfAnagramPairs("ifailuhkqq"), is(3));
         assertThat(test.numOfAnagramPairs("kkkk"), is(10));
-        assertThat(test.numOfAnagramPairs("cdcd\n"), is(5));
+        assertThat(test.numOfAnagramPairs("cdcd"), is(5));
     }
 }
