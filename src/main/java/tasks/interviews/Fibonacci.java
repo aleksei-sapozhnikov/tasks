@@ -36,12 +36,12 @@ public class Fibonacci {
         int a = 1;
         int b = 1;
         int next;
-        for (int i = 2; i <= n; i++) {
+        for (int i = 3; i <= n; i++) {
             next = a + b;
             a = b;
             b = next;
         }
-        return a;
+        return b;
     }
 
     /**
@@ -54,10 +54,10 @@ public class Fibonacci {
      * @return Число Фибоначчи с номером n.
      */
     public int numberNRecursive(int n) {
-        if (n == 0) {
-            return 0;
-        }
         if (n == 1) {
+            return 1;
+        }
+        if (n == 2) {
             return 1;
         }
         return numberNRecursive(n - 1) + numberNRecursive(n - 2);

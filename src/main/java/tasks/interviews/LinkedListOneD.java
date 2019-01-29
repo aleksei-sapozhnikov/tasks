@@ -54,14 +54,15 @@ public class LinkedListOneD<V> {
             next = current.next;
             current.next = null;
         }
-        Entry<V> nextNext;
-        while (next != null) {
-            nextNext = next.next;
-            next.next = current;
+        Entry<V> prev = current;
+        current = next;
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
             current = next;
-            next = nextNext;
         }
-        this.head = current;
+        this.head = prev;
     }
 
     /**
@@ -74,11 +75,10 @@ public class LinkedListOneD<V> {
      */
     public LinkedListOneD<V> revertCreateNewList() {
         LinkedListOneD<V> result = new LinkedListOneD<>();
-        Entry<V> head = this.head;
         Entry<V> toAdd = null;
-        if (head != null) {
-            toAdd = head.next;
-            result.tail = new Entry<>(head.value);
+        if (this.head != null) {
+            toAdd = this.head.next;
+            result.tail = new Entry<>(this.head.value);
             result.head = result.tail;
         }
         Entry<V> second;
