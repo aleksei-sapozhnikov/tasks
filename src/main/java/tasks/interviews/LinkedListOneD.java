@@ -23,14 +23,13 @@ public class LinkedListOneD<V> {
      * @param value Добавляемое значение.
      */
     public void add(V value) {
+        Entry<V> addition = new Entry<>(value);
         if (this.head == null) {
-            this.head = new Entry<>(value);
-            this.tail = this.head;
+            this.head = addition;
         } else {
-            Entry<V> entry = new Entry<V>(value);
-            this.tail.next = entry;
-            this.tail = entry;
+            this.tail.next = addition;
         }
+        this.tail = addition;
     }
 
     /**
@@ -48,14 +47,13 @@ public class LinkedListOneD<V> {
      * Получится a1.next==null, a2.next==a1 и т.д.
      */
     public void revertThisList() {
-        Entry<V> current = this.head;
         Entry<V> next = null;
-        if (current != null) {
-            next = current.next;
-            current.next = null;
+        if (this.head != null) {
+            next = this.head.next;
+            this.head.next = null;
         }
-        Entry<V> prev = current;
-        current = next;
+        Entry<V> prev = this.head;
+        Entry<V> current = next;
         while (current != null) {
             next = current.next;
             current.next = prev;
@@ -75,18 +73,17 @@ public class LinkedListOneD<V> {
      */
     public LinkedListOneD<V> revertCreateNewList() {
         LinkedListOneD<V> result = new LinkedListOneD<>();
-        Entry<V> toAdd = null;
+        Entry<V> current = null;
         if (this.head != null) {
-            toAdd = this.head.next;
-            result.tail = new Entry<>(this.head.value);
-            result.head = result.tail;
+            result.head = new Entry<>(this.head.value);
+            result.tail = result.head;
+            current = this.head.next;
         }
-        Entry<V> second;
-        while (toAdd != null) {
-            second = result.head;
-            result.head = new Entry<>(toAdd.value);
-            result.head.next = second;
-            toAdd = toAdd.next;
+        while (current != null) {
+            Entry<V> added = new Entry<>(current.value);
+            added.next = result.head;
+            result.head = added;
+            current = current.next;
         }
         return result;
     }
