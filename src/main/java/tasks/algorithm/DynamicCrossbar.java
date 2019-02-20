@@ -25,12 +25,21 @@ public class DynamicCrossbar {
      * @return Максимальная "половина суммы", которую можно выделить.
      */
     public int maxHalfSumPartition(int[] num) {
-        boolean[][] dp = this.getInitialDpTable(num);
-        // this.printDpTable("Изначальная таблица:", num, dp);
-        this.fillDpTable(num, dp);
-        // this.printDpTable("Заполненная таблица:", num, dp);
-        int maxSum = this.getMaxSum(dp);
-        // System.out.println("Max sum = " + maxSum);
+        boolean[][] initialDp = this.getInitialDpTable(num);
+        int[][] initialIndex = this.getInitialIndexTable(num);
+
+        Object[] filled = this.fillTables(num, initialDp, initialIndex);
+        boolean[][] filledDp = (boolean[][]) filled[0];
+        int[][] filledIndex = (int[][]) filled[1];
+        int maxSum = this.getMaxSum(filledDp);
+
+        this.printDpTable("Изначальная таблица возможности:", num, initialDp);
+        this.printIndexTable("Изначальная таблица индексов:", num, initialIndex);
+        this.printDpTable("Заполненная таблица возможности:", num, filledDp);
+        this.printIndexTable("Изначальная таблица индексов:", num, filledIndex);
+        System.out.println("Max sum = " + maxSum);
+
+//        this.printIndexTable("Таблица индексов:", num, this.indexTable);
         return maxSum;
     }
 
@@ -62,6 +71,17 @@ public class DynamicCrossbar {
         return dp;
     }
 
+    private int[][] getInitialIndexTable(int[] num) {
+        int sum = Arrays.stream(num).sum();
+        int[][] result = new int[1 + sum / 2][num.length + 1];
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                result[i][j] = -1;
+            }
+        }
+        return result;
+    }
+
     /**
      * Элементы массива: dp[i][j]. Означает, что сумма элементов (x1+...+xj) = i.
      * Мы проходим по элементам таблицы построчно - то есть, берем определенную сумму dp[i] и смотрим по всем [j].
@@ -89,19 +109,44 @@ public class DynamicCrossbar {
      * То есть, при dp[i][j] мы рассматриваем элемент num[j - 1].
      * <p>
      *
-     * @param num Массив, на основе которого заполняется dp.
-     * @param dp  Заполняемая таблица dp.
+     * @param num       Массив, на основе которого заполняется dp.
+     * @param initialDp Заполняемая таблица dp.
      */
-    private void fillDpTable(int[] num, boolean[][] dp) {
-        for (int iSum = 1; iSum < dp.length; iSum++) {
-            for (int j = 1; j < dp[0].length; j++) {
+    private Object[] fillTables(int[] num, boolean[][] initialDp, int[][] initialIndex) {
+        boolean[][] resultDp = this.copy2d(initialDp);
+        int[][] resultIndex = this.copy2d(initialIndex);
+        Object[] result = new Object[2];
+        result[0] = resultDp;
+        result[1] = resultIndex;
+        for (int iSum = 1; iSum < resultDp.length; iSum++) {
+            for (int j = 1; j < resultDp[0].length; j++) {
                 int added = num[j - 1];
-                dp[iSum][j] = dp[iSum][j - 1];
-                if (!(dp[iSum][j]) && (iSum - added >= 0)) {
-                    dp[iSum][j] = dp[iSum - added][j - 1];
+                resultDp[iSum][j] = resultDp[iSum][j - 1];
+                if (!(resultDp[iSum][j]) && (iSum - added >= 0)) {
+                    resultDp[iSum][j] = resultDp[iSum - added][j - 1];
+                }
+                if (resultDp[iSum][j]) {
+                    resultIndex[iSum][j] = j - 1;
                 }
             }
         }
+        return result;
+    }
+
+    private boolean[][] copy2d(boolean[][] array) {
+        boolean[][] result = new boolean[array.length][];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = Arrays.copyOf(array[i], array[i].length);
+        }
+        return result;
+    }
+
+    private int[][] copy2d(int[][] array) {
+        int[][] result = new int[array.length][];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = Arrays.copyOf(array[i], array[i].length);
+        }
+        return result;
     }
 
     /**
@@ -130,6 +175,31 @@ public class DynamicCrossbar {
      * @param dp      Таблица dp.
      */
     private void printDpTable(String caption, int[] num, boolean[][] dp) {
+        System.out.println(caption);
+        System.out.printf("%15s", "");
+        StringBuilder array = new StringBuilder("{");
+        for (int j = 0; j < dp[0].length; j++) {
+            if (j == 1) {
+                array.append(num[0]);
+            }
+            if (j > 1) {
+                array.append(",").append(num[j - 1]);
+            }
+            System.out.printf("%15s", array.toString() + "}");
+        }
+        for (int i = 0; i < dp.length; i++) {
+            System.out.println();
+            System.out.printf("%15s", "sum=" + i);
+            for (int j = 0; j < dp[0].length; j++) {
+                System.out.printf("%15s", dp[i][j]);
+            }
+        }
+        System.out.println();
+        System.out.println();
+    }
+
+
+    private void printIndexTable(String caption, int[] num, int[][] dp) {
         System.out.println(caption);
         System.out.printf("%15s", "");
         StringBuilder array = new StringBuilder("{");
