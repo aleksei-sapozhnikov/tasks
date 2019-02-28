@@ -5,11 +5,11 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class CrossbarTest {
+public class DynamicProgMaxWeightTwoEqualSubArraysTest {
 
     @Test
     public void maxSum() {
-        Crossbar crossbar = new Crossbar();
+        DynamicProgMaxWeightTwoEqualSubArrays crossbar = new DynamicProgMaxWeightTwoEqualSubArrays();
         assertThat(crossbar.maxSum(new int[]
                 {}), is(0));
         assertThat(crossbar.maxSum(new int[]

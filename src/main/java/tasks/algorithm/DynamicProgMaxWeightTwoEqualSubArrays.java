@@ -22,7 +22,7 @@ import java.util.stream.Stream;
  * @version 0.1
  * @since 0.1
  */
-public class Crossbar {
+public class DynamicProgMaxWeightTwoEqualSubArrays {
 
     /**
      * Нам нужно разделить набор на непересекающиеся поднаборы. Для этого будем использовать динамическое
@@ -46,7 +46,7 @@ public class Crossbar {
      * можно по-разному: в подмассив А иили в подмассив B. При анализе мы выбираем вариант, где будет максимальный
      * вес и записываем именно его.
      * Логика проверки добавления элемента и записи результата вынесена в метод
-     * {@link Crossbar#tryAddElementToEachSubset(int, Map, Map.Entry)}.
+     * {@link DynamicProgMaxWeightTwoEqualSubArrays#tryAddElementToEachSubset(int, Map, Map.Entry)}.
      * <p>
      * Когда мы проанализировали один элемент, мы записали значения в копию нашей карты d-->s. Осталось обновить
      * нашу карту d-->s (просто присваиваем ее переменной ссылку на копию). Все, операция с одним элементом
