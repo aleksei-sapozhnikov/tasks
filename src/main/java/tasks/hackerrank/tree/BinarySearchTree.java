@@ -1,6 +1,7 @@
 package tasks.hackerrank.tree;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * From: hackerrank.com. Date: 17.10.2018
@@ -161,6 +162,41 @@ public class BinarySearchTree {
             }
         }
         return result;
+    }
+
+    /**
+     * Метод обхода дерева: вертикальный обход,
+     * pre-ordered (префиксный):
+     * вершина -->
+     * левое поддерево -->
+     * правое поддерево.
+     *
+     * @return Возвращает лист со всеми нодами.
+     * Важен порядок элементов.
+     */
+    public List<Node> traversePreOrder() {
+        List<Node> result = new ArrayList<>();
+        Consumer<Node> consumer = result::add;
+        this.traversePreOrderTreatment(this.root, consumer);
+        return result;
+    }
+
+    /**
+     * Конкретный рекурсивный метод обхода, который
+     * применяется при префиксном обходе к каждой
+     * ноде.
+     *
+     * @param node     Нода.
+     * @param consumer Функция, которая что-то делает с нодой.
+     */
+    private void traversePreOrderTreatment(Node node, Consumer<Node> consumer) {
+        consumer.accept(node);
+        if (node.left != null) {
+            this.traversePreOrderTreatment(node.left, consumer);
+        }
+        if (node.right != null) {
+            this.traversePreOrderTreatment(node.right, consumer);
+        }
     }
 
     /**
