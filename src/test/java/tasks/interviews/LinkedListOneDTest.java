@@ -16,6 +16,10 @@ public class LinkedListOneDTest {
         assertThat(list.toString(), is("{ one --> two --> three }"));
     }
 
+    /////////////////////////////////////////////////
+    // Revert list WITHOUT creation of the new one
+    ////////////////////////////////////////////////
+
     @Test
     public void testRevertEmptyListThisList() {
         LinkedListOneD<String> list = new LinkedListOneD<>();
@@ -41,6 +45,10 @@ public class LinkedListOneDTest {
         list.revertThisList();
         assertThat(list.toString(), is("{ three --> two --> one }"));
     }
+
+    ////////////////////////////////////
+    // Revert list CREATING the new one
+    ////////////////////////////////////
 
     @Test
     public void testRevertEmptyListNewList() {

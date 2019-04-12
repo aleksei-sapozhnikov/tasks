@@ -47,6 +47,8 @@ public class LinkedListOneD<V> {
      * Получится a1.next==null, a2.next==a1 и т.д.
      */
     public void revertThisList() {
+        /* More complex code, for history */
+        /*
         Entry<V> next = null;
         if (this.head != null) {
             next = this.head.next;
@@ -61,6 +63,20 @@ public class LinkedListOneD<V> {
             current = next;
         }
         this.head = prev;
+        */
+
+        /* Simplified ccde, still not sure all corner-cases work */
+        this.tail = this.head;
+        Entry<V> prev = null;
+        Entry<V> cur = this.head;
+        Entry<V> next;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        this.head = prev;
     }
 
     /**
@@ -72,6 +88,8 @@ public class LinkedListOneD<V> {
      * Стало: a4-->a3-->a2-->a1
      */
     public LinkedListOneD<V> revertCreateNewList() {
+        /* More complex code, for history */
+        /*
         LinkedListOneD<V> result = new LinkedListOneD<>();
         Entry<V> current = null;
         if (this.head != null) {
@@ -84,6 +102,19 @@ public class LinkedListOneD<V> {
             added.next = result.head;
             result.head = added;
             current = current.next;
+        }
+        return result;
+        */
+
+        /* Simplified ccde, still not sure all corner-cases work */
+        LinkedListOneD<V> result = new LinkedListOneD<>();
+        result.tail = this.head;
+        Entry<V> cur = this.head;
+        while (cur != null) {
+            Entry<V> add = new Entry<>(cur.value);
+            add.next = result.head;
+            result.head = add;
+            cur = cur.next;
         }
         return result;
     }
