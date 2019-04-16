@@ -83,7 +83,7 @@ public class QuickSort {
      * @param array Массив для сортировки.
      * @return Тот же самый массив после сортировки (для простоты написания тестов).
      */
-    public int[] quicksort(int[] array) {
+    public int[] quickSort(int[] array) {
         quickSort(array, 0, array.length - 1);
         return array;
     }
