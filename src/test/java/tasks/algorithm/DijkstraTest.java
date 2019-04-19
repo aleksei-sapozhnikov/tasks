@@ -16,7 +16,7 @@ public class DijkstraTest {
                 {I, 2, I, 3},
                 {4, I, 3, I}
         };
-        int[] dist = new Dijkstra().dijkstraO2(matrix, 3);
+        int[] dist = new Dijkstra().dijkstraO2(matrix, 0);
         System.out.println(Arrays.toString(dist));
     }
 }
