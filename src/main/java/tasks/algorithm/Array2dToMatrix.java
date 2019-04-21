@@ -186,10 +186,17 @@ public class Array2dToMatrix {
      * @param cell  Ячейка. Координаты заданы в виде массива из двух элементов: {номерСтроки, номерСтолбца}.
      * @return Номер графа, соответстующего ячейке.
      */
-    private int graphNumber(int[][] array, int[] cell) {
+    public int graphNumber(int[][] array, int[] cell) {
         int iRow = cell[0];
         int iCol = cell[1];
         return iRow * array[0].length + iCol;
     }
-    
+
+    public int[] cellCoords(int[][] array, int graphNumber) {
+        int cols = array[0].length;
+        int iRow = graphNumber / cols;
+        int iCol = graphNumber % cols;
+        return new int[]{iRow, iCol};
+    }
+
 }

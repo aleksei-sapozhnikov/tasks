@@ -30,4 +30,18 @@ public class Array2dToMatrixTest {
         assertTrue(Arrays.deepEquals(result, matrix));
     }
 
+    @Test
+    public void cellCoords() {
+        int[][] array = {
+                {1, 3, 6},
+                {6, 4, 5}
+        };
+        assertArrayEquals(new int[]{0, 0}, this.convert.cellCoords(array, 0));
+        assertArrayEquals(new int[]{0, 1}, this.convert.cellCoords(array, 1));
+        assertArrayEquals(new int[]{0, 2}, this.convert.cellCoords(array, 2));
+        assertArrayEquals(new int[]{1, 0}, this.convert.cellCoords(array, 3));
+        assertArrayEquals(new int[]{1, 1}, this.convert.cellCoords(array, 4));
+        assertArrayEquals(new int[]{1, 2}, this.convert.cellCoords(array, 5));
+    }
+
 }
