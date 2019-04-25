@@ -1,4 +1,4 @@
-package tasks.algorithm;
+package tasks.algorithm.dijkstra;
 
 import java.util.Arrays;
 
@@ -192,6 +192,13 @@ public class Array2dToMatrix {
         return iRow * array[0].length + iCol;
     }
 
+    /**
+     * Возвращает координаты ячейки в массиве по номеру графа.
+     *
+     * @param array Массив.
+     * @param graphNumber Номер графа.
+     * @return Соответствующую графу ячейку. Координаты заданы в виде массива из двух элементов: {номерСтроки, номерСтолбца}.
+     */
     public int[] cellCoords(int[][] array, int graphNumber) {
         int cols = array[0].length;
         int iRow = graphNumber / cols;

@@ -1,6 +1,7 @@
-package tasks.algorithm;
+package tasks.algorithm.dijkstra;
 
 import org.junit.Test;
+import tasks.algorithm.dijkstra.Dijkstra;
 
 import java.util.Arrays;
 

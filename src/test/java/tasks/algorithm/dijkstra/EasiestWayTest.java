@@ -1,8 +1,9 @@
-package tasks.algorithm;
+package tasks.algorithm.dijkstra;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import tasks.algorithm.dijkstra.EasiestWay;
 
 
 public class EasiestWayTest {

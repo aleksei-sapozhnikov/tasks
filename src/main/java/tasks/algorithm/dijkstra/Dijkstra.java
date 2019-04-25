@@ -1,4 +1,4 @@
-package tasks.algorithm;
+package tasks.algorithm.dijkstra;
 
 
 import java.util.Arrays;

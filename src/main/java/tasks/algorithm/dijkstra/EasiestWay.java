@@ -1,4 +1,4 @@
-package tasks.algorithm;
+package tasks.algorithm.dijkstra;
 
 
 /**
@@ -23,6 +23,13 @@ public class EasiestWay {
      */
     private Dijkstra dijkstra = new Dijkstra();
 
+    /**
+     * Возвращает самый "дешевый" путь из точки start в точку finish.
+     * @param heights Массив "высот".
+     * @param start Стартовая ячейка. Координаты заданы в виде массива из двух элементов: {номерСтроки, номерСтолбца}.
+     * @param end Финишная ячейка. Координаты заданы в виде массива из двух элементов: {номерСтроки, номерСтолбца}.
+     * @return "Стоимость" самого короткого пути.
+     */
     public int easiestWay(int[][] heights, int[] start, int[] end) {
         int[][] matrix = this.array2dToMatrix.convert(heights);
         int graphStart = this.array2dToMatrix.graphNumber(heights, start);
